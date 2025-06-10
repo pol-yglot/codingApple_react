@@ -13,3 +13,14 @@
 - 컴포넌트 분리 방법 : 각 func 밖에 새로운 func을 만들어주면 된다
 - ✅ 장점 : 복잡한 html 을 컴포넌트 구조로 변경 가능
 - ✅ 단점 : stete 가져다 쓸 떄 문제 생김, a함수에 있던 변수는 b 함수에서 마음대로 쓸 수 없음 
+
+
+### props 
+- 자식이 부모가 가지고 있던 state 사용 가능 
+<div style="display:flex; gap: 10px">
+<img src="image.png" width="300" height="200"/>
+<img src="image-1.png" width="300" height="200"/>
+</div>
+
+### state 
+- state를 만드는 곳은 stete 사용하는 컴포넌트들 중 최상위 컴포넌트 

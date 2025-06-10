@@ -15,6 +15,11 @@ div{
   border-bottom: 1px solid grey;
 }
 
+.category{
+  display: flex;
+  justify-content: end;
+  padding: 20px;
+}
 .modal{
   list-style: none;
   padding: 20px;
