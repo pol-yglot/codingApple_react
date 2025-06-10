@@ -1,12 +1,15 @@
-# React + Vite
+# React + Vite + Node.js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### JSX 문법 
+- class 넣을땐 className
+- 변수꽂을땐 {변수명}
+- style 넣을땐 style = {{ 이름 : '값'}}
+- return () 안에는 병렬로 태그 2개 이상 기입금지 
+- 일반변수는 값변경시 자동으로 렌더링 안되기 때문에 자주 변경될 것 같은 html 부분은 state 변수를 사용해야 함
+- js와 달리 jsx는 한줄주석(//) 사용불가, 태그 밖에 주석을 달려면 {/* */} 같은 형식으로 사용해야 함 
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 컴포넌트 분리
+- 컴포넌트 분리 방법 : 각 func 밖에 새로운 func을 만들어주면 된다
+- ✅ 장점 : 복잡한 html 을 컴포넌트 구조로 변경 가능
+- ✅ 단점 : stete 가져다 쓸 떄 문제 생김, a함수에 있던 변수는 b 함수에서 마음대로 쓸 수 없음 
