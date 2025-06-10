@@ -24,3 +24,26 @@
 
 ### state 
 - state를 만드는 곳은 stete 사용하는 컴포넌트들 중 최상위 컴포넌트 
+- state 변경 함수는 늦게 처리됨 
+
+### 이벤트 버블링 
+- 클릭 이벤트는 상위 html로 퍼짐 
+
+### 새로고침 
+- 새로고침시 마다 html을 새로 읽기 때문에 따로 저장하지 않는이상, 화면의 값들은 휘발성
+
+### 옛날 class 문법으로 컴포넌트 만들기 → 이제 함수형으로 바뀌어서 잘안쓰니 알아만 두기  
+```
+class Modal2 extends React.Component {
+  constructor(){
+    super()
+  }
+
+  render(){
+    return (
+      <div>안녕</div>
+    )
+  }
+
+}
+```
