@@ -1,24 +1,103 @@
 let data = [
   {
-    id : 0,
-    title : "White and Black",
-    content : "Born in France",
-    price : 120000
+    id: 0,
+    title: "White and Black",
+    content: "Born in France",
+    price: 120000,
+    size: "250mm",
+    color: "White",
+    stock: 12,
+    seller: "선영몰",
+    rating: 4.7,
+    reviews: [
+      { user: "minji", comment: "진짜 예뻐요!", rating: 5 },
+      { user: "seojun", comment: "약간 작게 나왔어요", rating: 4 }
+    ],
+    brand: "Syeong Brand",
+    releaseDate: "2024-09-10",
+    origin: "France",
+    features: ["가볍다", "통기성 좋음", "디자인 심플"],
+    category: "운동화",
+    material: "합성가죽",
+    targetAudience: ["10대", "20대", "30대 남녀공용"],
+    similarProducts: ["Black Runner", "Paris White"],
+    warnings: ["젖은 곳 피하기", "세탁기 금지"],
+    sizeOptions: ["240", "250", "260", "270"],
+    colorOptions: ["White", "Black"],
+    description: "화이트와 블랙의 절묘한 조화로 탄생한 베스트셀러.",
+    manufacturer: "Syeong Shoe Corp",
+    warranty: 12,
+    shippingInfo: "3일 이내 발송, 무료배송",
+    returnPolicy: "7일 이내 무료반품",
+    discount: 10,
+    available: true
   },
-
   {
-    id : 1,
-    title : "Red Knit",
-    content : "Born in Seoul",
-    price : 110000
+    id: 1,
+    title: "Red Knit",
+    content: "Born in Seoul",
+    price: 110000,
+    size: "260mm",
+    color: "Red",
+    stock: 5,
+    seller: "선영몰",
+    rating: 4.4,
+    reviews: [
+      { user: "jina", comment: "쫀쫀해서 좋아요!", rating: 5 },
+      { user: "hyeon", comment: "색감이 쨍해서 예뻐요", rating: 4 }
+    ],
+    brand: "Syeong Knit",
+    releaseDate: "2024-08-15",
+    origin: "Korea",
+    features: ["니트소재", "통기성 우수", "경량"],
+    category: "런닝화",
+    material: "니트패브릭",
+    targetAudience: ["여성", "러너"],
+    similarProducts: ["Pink Air", "Red Boost"],
+    warnings: ["세탁기 금지", "강한 햇빛 피하기"],
+    sizeOptions: ["230", "240", "250", "260"],
+    colorOptions: ["Red", "Pink"],
+    description: "서울 감성의 니트 러닝화. 스타일과 기능을 모두 만족.",
+    manufacturer: "Syeong Footwear",
+    warranty: 6,
+    shippingInfo: "당일 배송 가능",
+    returnPolicy: "단순변심 5일 이내 반품",
+    discount: 0,
+    available: true
   },
-
   {
-    id : 2,
-    title : "Grey Yordan",
-    content : "Born in the States",
-    price : 130000
+    id: 2,
+    title: "Grey Yordan",
+    content: "Born in the States",
+    price: 130000,
+    size: "270mm",
+    color: "Grey",
+    stock: 0,
+    seller: "선영몰",
+    rating: 4.9,
+    reviews: [
+      { user: "taeho", comment: "레전드급 편안함", rating: 5 },
+      { user: "yumi", comment: "남친 선물로 딱이에요", rating: 5 }
+    ],
+    brand: "SY Jordan",
+    releaseDate: "2024-07-20",
+    origin: "USA",
+    features: ["고급 스니커즈", "내구성 좋음", "쿠셔닝 탁월"],
+    category: "프리미엄 스니커즈",
+    material: "천연가죽",
+    targetAudience: ["남성", "스트릿 패션러"],
+    similarProducts: ["Black Yordan", "Retro Boost"],
+    warnings: ["우천 시 착용 주의"],
+    sizeOptions: ["260", "270", "280"],
+    colorOptions: ["Grey", "Black"],
+    description: "클래식함과 현대적 감성을 결합한 프리미엄 모델.",
+    manufacturer: "Syeong Sports USA",
+    warranty: 18,
+    shippingInfo: "예약 배송 (5~7일 소요)",
+    returnPolicy: "제품 하자 시 무상 반품",
+    discount: 5,
+    available: false
   }
-] 
+];
 
 export default data;
