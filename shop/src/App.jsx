@@ -3,6 +3,9 @@ import { Navbar, Container, Nav, Card, ListGroup } from 'react-bootstrap';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import './App.css';
 import data from './data.js';
+import styled from 'styled-components';
+
+
 import DetailPage from './routes/DetailPage.jsx';
 import BestPage from './routes/BestPage.jsx';
 import NewPage from './routes/NewPage.jsx';
@@ -11,6 +14,11 @@ import NotFound from './routes/NotFound.jsx';
 import Footer from './routes/Footer.jsx';
 import NavBar from './routes/Navbar.jsx';
 import HelpPage from './routes/HelpPage.jsx';
+import CartPage from './routes/CartPage.jsx';
+import LoginPage from './routes/LoginPage.jsx';
+import SignupPage from './routes/SignupPage.jsx';
+
+
 
 function App() {
   const [shoes] = useState(data);
@@ -38,6 +46,12 @@ function App() {
         <Route path="/help" element={<HelpPage />} />
         {/* 404 Not Found */}
         <Route path="*" element={<NotFound />} />
+        {/* 장바구니 */}
+        <Route path="/cart" element={<CartPage />} />
+        {/* 로그인 페이지 */}
+        <Route path="/login" element={<LoginPage />} />
+        {/* 회원가입 페이지 */}
+        <Route path="/signup" element={<SignupPage />} />
         {/* <Route path="/about" element={<About />}>
           <Route path="member" element={<div>멤버 정보</div>} />
           <Route path="location" element={<div>위치 정보</div>} />
@@ -72,7 +86,7 @@ function HomePage({ shoes }) {
           ))}
         </div>
       </div>
-      
+
     </>
   );
 }

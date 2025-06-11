@@ -94,3 +94,30 @@ function About() {
 ### 컴포넌트 페이지 분리 
 - 페이지명은 대문자로 시작 
 - func + export 해주면 App.js에서 사용이 가능하다. 
+
+
+### styled-components 
+- js안에서 css 생성 및 적용하는 방법
+- 장점 
+  - 스타일이 다른 js 파일로 오염되지 않음 
+  - css 거치지 않기 때문에 페이지 로딩시간 단축
+- 단점 
+  - js 파일이 복잡해짐 
+  - 협업시 props 사용 등 숙련도 이슈 
+```
+npm install styled-components
+
+import styled from 'styled-components';
+
+# 기본 문법
+let YellowBtn = styled.button`
+  background: yellow;       
+`
+
+# 외부 라이브러리 사용법 
+let YellowBtn = styled.button`
+  background: ${ props => props.bg };       
+`
+
+<YellowBtn></YellowBtn>
+```
