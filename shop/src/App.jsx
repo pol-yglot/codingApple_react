@@ -1,16 +1,15 @@
+// App.js
+
 import { useState } from 'react';
-import { Button, Navbar, Container, Nav, NavDropdown, Card, ListGroup } from 'react-bootstrap';
+import { Navbar, Container, Nav, Card, ListGroup } from 'react-bootstrap';
 import './App.css';
 import data from './data.js'
 
-
 function App() {
-
   let [shoes] = useState(data);
 
   return (
     <div className="App">
-
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
@@ -26,30 +25,42 @@ function App() {
 
       <div className='container'>
         <div className='row'>
-          {shoes.map((shoe, index) => {
-            return (
-              <div className='col-md-4' key={index}>
-                <Card style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={`https://codingapple1.github.io/shop/shoes${index + 1}.jpg`} />
-                  <Card.Body>
-                    <Card.Title>{shoe.title}</Card.Title>
-                    <Card.Text>{shoe.price}</Card.Text>
-                  </Card.Body>
-                  <ListGroup className="list-group-flush">
-                    <ListGroup.Item>ㅇㅇㅇ</ListGroup.Item>
-                    <ListGroup.Item>어ㅉ떠구구</ListGroup.Item>
-                  </ListGroup>
-                  <Card.Body>
-                    <Card.Link href="#">링크?</Card.Link>
-                    <Card.Link href="#">링크 소개</Card.Link>
-                  </Card.Body>
-                </Card>
-              </div>
-            );
-          })}
-          </div>
+          {shoes.map((shoe, index) => (
+            <div className='col-md-4' key={index}>
+              <CardComponent 
+                index={index} // ✅ index 전달
+                title={shoe.title}
+                content={shoe.content}
+                price={shoe.price}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
+  );
+}
+
+function CardComponent({ title, content, price, index }) {
+  return (
+    <Card style={{ width: '18rem' }}>
+      <Card.Img 
+        variant="top" 
+        src={`https://codingapple1.github.io/shop/shoes${index + 1}.jpg`} 
+      />
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{content}</Card.Text>
+      </Card.Body>
+      <ListGroup className="list-group-flush">
+        <ListGroup.Item>{price}</ListGroup.Item>
+        <ListGroup.Item>어ㅉ떠구구</ListGroup.Item>
+      </ListGroup>
+      <Card.Body>
+        <Card.Link href="#">링크?</Card.Link>
+        <Card.Link href="#">링크 소개</Card.Link>
+      </Card.Body>
+    </Card>
   );
 }
 
