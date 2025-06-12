@@ -149,3 +149,11 @@ useEffect(()=>{
 ```
 useEffect(()=>{ }, [count])
 ```
+
+### ajax를 활용한 서버 통신 
+```
+# 임포트 
+import axios from 'axios';
+# ajax 요청 형식 
+onClick={()=>{ axios.get('') } }
+```
