@@ -59,7 +59,7 @@ function LoginPage() {
             </Form>
 
             <div className="mt-3 text-center">
-                <p>아직 회원이 아니신가요? <a href="/register">회원가입</a></p>
+                <p>아직 회원이 아니신가요? <a href="/signup">회원가입</a></p>
                 <p><a href="/forgot-password">비밀번호 찾기</a></p>
                 <p><a href="/help">고객센터</a></p>
             </div>

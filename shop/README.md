@@ -121,3 +121,31 @@ let YellowBtn = styled.button`
 
 <YellowBtn></YellowBtn>
 ```
+
+### 컴포넌트의 라이프사이클
+<div style="display:flex; gap: 10px">
+  <img src="image.png" width="300" height="200"/>
+</div>
+
+### useEffect 사용하기 
+- useEffect 안에 있는 코드는 html 렌더링 후에 동작
+- 주로 [어려운 연산/서버에서 데이터 가져오는 작업/타이머 장착] 등에 쓰임 
+1. 재렌더링마다 코드 실행하고 싶으면 
+```
+useEffect(()=>{ })
+```
+2. mount시 1회 코드 실행하고 싶으면 
+```
+useEffect(()=>{ }, [])
+```
+3. unmount시 1회 코드 실행하고 싶으면 
+```
+useEffect(()=>{ 
+  return () => {}
+}, [])
+```
+4. useEffect 실행 전에 뭔가 실행하려면 언제나 return () => {}
+5. 특정 state 변경시에만 실행하려면 [state명]
+```
+useEffect(()=>{ }, [count])
+```

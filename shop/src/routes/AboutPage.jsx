@@ -5,14 +5,14 @@ import { Card, Container, Row, Col } from 'react-bootstrap';
 function AboutPage() {
   return (
     <Container className="my-5">
-      <h2 className="mb-4">🏢 선영's 신발가게 소개</h2>
+      <h2 className="mb-4">🏢 SAPPUN 회사 소개</h2>
       <Row>
         <Col md={6}>
           <Card className="mb-4">
             <Card.Body>
               <Card.Title>회사 개요</Card.Title>
               <Card.Text>
-                선영's 신발가게는 최신 유행과 편안함을 겸비한 신발을 제공하는 브랜드입니다.  
+                'SAPPUN'은 최신 유행과 편안함을 겸비한 신발을 제공하는 브랜드입니다.  
                 고객 만족을 최우선으로 하며, 합리적인 가격과 빠른 배송을 자랑합니다.
               </Card.Text>
             </Card.Body>

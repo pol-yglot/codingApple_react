@@ -17,7 +17,7 @@ import HelpPage from './routes/HelpPage.jsx';
 import CartPage from './routes/CartPage.jsx';
 import LoginPage from './routes/LoginPage.jsx';
 import SignupPage from './routes/SignupPage.jsx';
-
+import ForgotPassword from './routes/ForgotPassword.jsx';
 
 
 function App() {
@@ -52,6 +52,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         {/* 회원가입 페이지 */}
         <Route path="/signup" element={<SignupPage />} />
+        {/* 비밀번호 재설정 페이지 */}
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         {/* <Route path="/about" element={<About />}>
           <Route path="member" element={<div>멤버 정보</div>} />
           <Route path="location" element={<div>위치 정보</div>} />
@@ -76,6 +78,7 @@ function HomePage({ shoes }) {
           {shoes.map((shoe, index) => (
             <div className="col-md-4" key={index}>
               <CardComponent
+                index={index}
                 id={shoe.id}
                 title={shoe.title}
                 content={shoe.content}
@@ -91,11 +94,13 @@ function HomePage({ shoes }) {
   );
 }
 
-function CardComponent({ title, content, price, id }) {
+function CardComponent({ title, content, price, id, index }) {
   const navigate = useNavigate();
 
   return (
-    <Card style={{ width: '18rem', cursor: 'pointer' }}>
+    <Card className="position-relative" style={{ width: '18rem', cursor: 'pointer' }}>
+       <span className='badge bg-danger position-absolute top-0 end-0 m-2'
+       style={{ zIndex: 1 }}> 🏆 { index +1 } 위 </span>
       <Card.Img
         variant="top"
         src={`https://codingapple1.github.io/shop/shoes${id + 1}.jpg`}
