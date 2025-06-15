@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { Navbar, Container, Nav, Card, ListGroup, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, Card, ListGroup, Button, Spinner } from 'react-bootstrap';
 import { Routes, Route, useNavigate, Outlet } from 'react-router-dom';
 import './App.css';
 import data from './data.js';
 import styled from 'styled-components';
 import axios from 'axios';
-
 
 import DetailPage from './routes/DetailPage.jsx';
 import BestPage from './routes/BestPage.jsx';
@@ -20,57 +19,69 @@ import LoginPage from './routes/LoginPage.jsx';
 import SignupPage from './routes/SignupPage.jsx';
 import ForgotPassword from './routes/ForgotPassword.jsx';
 
-
 function App() {
-
-  { /* 변수선언 */ }
   const [shoes, setShoes] = useState(data);
-  {/* 페이지 이동을 도와주는 useNavigate 훅 */ }
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <div className="App">
-      { /* 네비게이션 바 */}
       <NavBar />
 
-      { /* 라우팅 경로 */}
       <Routes>
-        {/* 홈 */}
-        <Route path="/" element={<HomePage shoes={shoes} setShoes={setShoes}/>} />
-        {/* 상세페이지 (상품 ID 활용) */}
+        <Route path="/" element={<HomePage shoes={shoes} setShoes={setShoes} />} />
         <Route path="/detail/:id" element={<DetailPage shoes={shoes} />} />
-        {/* 베스트 상품 */}
         <Route path="/best" element={<BestPage shoes={shoes} />} />
-        {/* 신상품 */}
         <Route path="/new" element={<NewPage shoes={shoes} />} />
-        {/* 회사소개 */}
         <Route path="/about" element={<AboutPage />} />
-        {/* 고객센터 */}
         <Route path="/help" element={<HelpPage />} />
-        {/* 404 Not Found */}
         <Route path="*" element={<NotFound />} />
-        {/* 장바구니 */}
         <Route path="/cart" element={<CartPage />} />
-        {/* 로그인 페이지 */}
         <Route path="/login" element={<LoginPage />} />
-        {/* 회원가입 페이지 */}
         <Route path="/signup" element={<SignupPage />} />
-        {/* 비밀번호 재설정 페이지 */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        {/* <Route path="/about" element={<About />}>
-          <Route path="member" element={<div>멤버 정보</div>} />
-          <Route path="location" element={<div>위치 정보</div>} />
-        </Route> */}
       </Routes>
 
-      {/* 푸터 */}
       <Footer />
-
     </div>
   );
 }
 
-function HomePage({ shoes, setShoes}) {
+function HomePage({ shoes, setShoes }) {
+  const [clickCount, setClickCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleClick = () => {
+    const nextPage = clickCount + 2; // data2.json부터 시작
+    const url = `https://codingapple1.github.io/shop/data${nextPage}.json`;
+
+    if (nextPage > 4) {
+      alert('더 이상 상품이 없습니다.');
+      setIsVisible(false);
+      return;
+    }
+
+    setIsLoading(true);
+
+    axios.get(url)
+      .then((res) => {
+        // ✅ id가 없을 경우 자동 부여
+        const fixedData = res.data.map((item, i) => ({
+          ...item,
+          id: shoes.length + i,
+        }));
+        setShoes((prevShoes) => [...prevShoes, ...fixedData]);
+        setClickCount(clickCount + 1);
+      })
+      .catch(() => {
+        alert('더 이상 상품이 없습니다.');
+        setIsVisible(false);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   return (
     <>
       <div className="main-bg"></div>
@@ -87,36 +98,36 @@ function HomePage({ shoes, setShoes}) {
                 content={shoe.content}
                 price={shoe.price.toLocaleString()}
               />
-
             </div>
           ))}
         </div>
 
-        <Button
-          variant="light"
-          size="lg"
-          className="d-block mx-auto my-5 px-5 py-3 border rounded-pill shadow-sm fw-semibold"
-          style={{
-            fontSize: '1.2rem',
-            backgroundColor: '#f8f9fa',
-            borderColor: '#ced4da',
-            transition: 'all 0.3s',
-          }}
-          onClick={()=>{ 
-            axios.get('https://codingapple1.github.io/shop/data2.json').
-            then((res)=>{ { /* 성공 */ }
-              console.log(res.data);
-              // 카드 컴포넌트에 새로운 데이터를 추가하는 로직
-              setShoes((prevShoes) => [...prevShoes, ...res.data]); // 상태 갱신
-            }).catch(()=>{ { /* 실패 */ }
-              console.error('데이터를 불러오는 데 실패했습니다.');
-            }) } }
-        >
-          👟 더 많은 신발 보기
-        </Button>
+        {/* 로딩 중이면 스피너 표시 */}
+        {isLoading && (
+          <div className="text-center my-3">
+            <Spinner animation="border" variant="secondary" />
+            <div className="mt-2">로딩 중입니다...</div>
+          </div>
+        )}
 
+        {/* 버튼 조건부 표시 */}
+        {!isLoading && isVisible && (
+          <Button
+            variant="light"
+            size="lg"
+            className="d-block mx-auto my-5 px-5 py-3 border rounded-pill shadow-sm fw-semibold"
+            style={{
+              fontSize: '1.2rem',
+              backgroundColor: '#f8f9fa',
+              borderColor: '#ced4da',
+              transition: 'all 0.3s',
+            }}
+            onClick={handleClick}
+          >
+            👟 더 많은 신발 보기
+          </Button>
+        )}
       </div>
-
     </>
   );
 }
@@ -126,11 +137,17 @@ function CardComponent({ title, content, price, id, index }) {
 
   return (
     <Card className="position-relative" style={{ width: '18rem', cursor: 'pointer' }}>
-      <span className='badge bg-danger position-absolute top-0 end-0 m-2'
-        style={{ zIndex: 1 }}> 🏆 {index + 1} 위 </span>
+      <span className='badge bg-danger position-absolute top-0 end-0 m-2' style={{ zIndex: 1 }}>
+        🏆 {index + 1} 위
+      </span>
       <Card.Img
         variant="top"
         src={`https://codingapple1.github.io/shop/shoes${id + 1}.jpg`}
+        style={{
+          height: 200,
+          objectFit: 'cover',
+          backgroundColor: '#f8f9fa'
+        }}
       />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
@@ -147,6 +164,5 @@ function CardComponent({ title, content, price, id, index }) {
     </Card>
   );
 }
-
 
 export default App;

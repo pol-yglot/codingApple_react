@@ -151,9 +151,35 @@ useEffect(()=>{ }, [count])
 ```
 
 ### ajax를 활용한 서버 통신 
+- 세팅 
 ```
-# 임포트 
 import axios from 'axios';
-# ajax 요청 형식 
+```
+
+- GET 요청 
+```
 onClick={()=>{ axios.get('') } }
 ```
+
+- POST 요청 
+```
+{ /* POST 요청 */ }
+axios.post('/', { name: 'John', age: 30 })
+
+{ /* 다건 POST 요청 */ }
+Promise.all([
+  axios.post('/endpoint1', { data: 'data1' }),
+  axios.post('/endpoint2', { data: 'data2' })
+]).then((responses) => {
+  console.log(responses[0].data);
+  console.log(responses[1].data);
+}).catch((error) => {
+  console.error('Error in Promise.all:', error);
+});
+
+{ /* js 기본문법으로 GET 요청 */ }
+fetch('https://codingapple1.github.io/shop/data2.json')
+```
+
+
+            

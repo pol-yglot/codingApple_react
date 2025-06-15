@@ -46,6 +46,7 @@ function CardComponent({ title, content, price, index, onClick }) {
       <Card.Body>
         <Card.Link href="#">좋아요</Card.Link>
         <Card.Link href="#">장바구니</Card.Link>
+        <Card.Link href="#">상세보기</Card.Link>
       </Card.Body>
     </Card>
   );
